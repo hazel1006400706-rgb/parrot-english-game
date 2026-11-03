@@ -108,7 +108,8 @@ button{cursor:pointer;border:none;background:none;color:inherit;}
 @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
 
 /* game */
-#game{display:grid;grid-template-rows:84px 1fr; background:linear-gradient(180deg,#d8f5ff 0%,#edf8e9 46%,#e6f6de 100%);}
+#game{grid-template-rows:84px 1fr; background:linear-gradient(180deg,#d8f5ff 0%,#edf8e9 46%,#e6f6de 100%);}
+#game.on{display:grid;}
 .topbar{display:flex;align-items:center;gap:14px;padding:18px 26px 10px;position:relative;z-index:3;}
 .top-pill{background:rgba(255,255,255,.9);border:2px solid #fff;border-radius:999px;padding:10px 16px;font-size:15px;font-weight:800;box-shadow:0 4px 12px rgba(60,100,60,.08);}
 .topbar .spacer{flex:1;}

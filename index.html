@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>小鹦鹉英语闯关｜沪教牛津版三年级上册</title>
+<style>
+:root{
+  --bg:#e8f7ea;
+  --card:#fffdf6;
+  --line:#f0e7cf;
+  --ink:#564435;
+  --soft:#8a7b6f;
+  --green:#7ecf78;
+  --green-d:#4e9f54;
+  --leaf:#9fe38f;
+  --leaf-d:#65b660;
+  --sky:#dff6ff;
+  --blue:#65b9d0;
+  --blue-d:#4598b0;
+  --yellow:#ffd86f;
+  --orange:#ffb65b;
+  --orange-d:#ef9736;
+  --pink:#ff9bb0;
+  --pink-d:#da6f8a;
+  --red:#ff7866;
+  --shadow:0 14px 30px rgba(72,112,63,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top, #f8fff7 0 12%, transparent 12%),
+    linear-gradient(180deg,#d6f3ff 0%,#ebf8e4 55%,#d4eec9 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+button,input{font:inherit;}
+button{cursor:pointer;border:none;background:none;color:inherit;}
+#app{
+  width:min(1380px,96vw);
+  aspect-ratio:16/9;
+  min-height:min(760px,92vh);
+  background:linear-gradient(180deg,#fefcf4 0%,#eef8e9 100%);
+  border-radius:32px;
+  overflow:hidden;
+  box-shadow:0 20px 48px rgba(74,114,78,.18);
+  border:3px solid rgba(255,255,255,.9);
+  position:relative;
+}
+.view{position:absolute;inset:0;display:none;}
+.view.on{display:block;animation:fadeIn .35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* home */
+#home{
+  background:
+    radial-gradient(circle at 15% 16%,rgba(255,255,255,.8) 0 6%,transparent 6%),
+    radial-gradient(circle at 72% 14%,rgba(255,255,255,.7) 0 5%,transparent 5%),
+    linear-gradient(180deg,#d8f4ff 0%,#dff6ef 50%,#d5efc8 100%);
+  position:relative;
+  padding:36px 46px;
+}
+.home-cloud,.forest-layer,.home-hill{position:absolute;pointer-events:none;}
+.home-cloud{background:rgba(255,255,255,.9);border-radius:999px;filter:drop-shadow(0 5px 12px rgba(255,255,255,.25));}
+.home-cloud::before,.home-cloud::after{content:"";position:absolute;background:inherit;border-radius:50%;}
+.home-cloud.c1{width:124px;height:40px;top:64px;left:86px;}
+.home-cloud.c1::before{width:52px;height:52px;left:16px;top:-22px;}
+.home-cloud.c1::after{width:44px;height:44px;left:58px;top:-18px;}
+.home-cloud.c2{width:100px;height:34px;top:92px;right:130px;}
+.home-cloud.c2::before{width:42px;height:42px;left:18px;top:-18px;}
+.home-cloud.c2::after{width:34px;height:34px;left:52px;top:-12px;}
+.home-hill{left:-5%;right:-5%;bottom:-12px;height:42%;background:radial-gradient(circle at 20% 0,#89d67c 0 22%,transparent 22%),linear-gradient(180deg,#8ed87d,#63b85e);border-radius:52% 52% 0 0/100% 100% 0 0;}
+.forest-layer{left:0;right:0;bottom:78px;height:180px;opacity:.95;background:
+  radial-gradient(circle at 4% 65%,#63b85e 0 22px,transparent 23px),
+  radial-gradient(circle at 14% 58%,#7ed478 0 28px,transparent 29px),
+  radial-gradient(circle at 26% 62%,#65b660 0 22px,transparent 23px),
+  radial-gradient(circle at 37% 58%,#93db82 0 30px,transparent 31px),
+  radial-gradient(circle at 49% 64%,#65b660 0 24px,transparent 25px),
+  radial-gradient(circle at 61% 56%,#85d676 0 30px,transparent 31px),
+  radial-gradient(circle at 72% 62%,#62b65d 0 26px,transparent 27px),
+  radial-gradient(circle at 84% 60%,#7ed478 0 30px,transparent 31px),
+  radial-gradient(circle at 95% 65%,#5db059 0 22px,transparent 23px);
+}
+.home-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;height:100%;align-items:center;}
+.hero-copy h1{font-size:52px;line-height:1.1;font-weight:900;letter-spacing:1px;}
+.hero-copy p{margin-top:18px;font-size:18px;line-height:1.8;color:var(--soft);max-width:560px;}
+.hero-pills{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px;}
+.pill{padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.86);border:2px solid #f4e8c9;box-shadow:0 4px 0 #ecdcb1;font-weight:800;color:#5a4a37;}
+.home-actions{display:flex;gap:16px;margin-top:28px;}
+.btn-main,.btn-sub,.btn-mini{border-radius:18px;font-weight:800;box-shadow:0 7px 0 rgba(0,0,0,.08),0 12px 22px rgba(90,120,70,.12);}
+.btn-main{padding:18px 34px;background:linear-gradient(180deg,#ffca72,#ffab42);color:#fff;font-size:22px;}
+.btn-sub{padding:16px 22px;background:#fff;border:2px solid var(--line);font-size:18px;}
+.btn-mini{padding:12px 18px;background:#fff;border:2px solid var(--line);font-size:15px;}
+.btn-main:active,.btn-sub:active,.btn-mini:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.08);}
+.home-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px;max-width:520px;}
+.stat-card{background:rgba(255,255,255,.9);border:2px solid #fff;border-radius:22px;padding:18px;text-align:center;box-shadow:var(--shadow);}
+.stat-card strong{display:block;font-size:30px;color:var(--orange-d);}
+.stat-card span{display:block;margin-top:4px;font-size:14px;color:var(--soft);font-weight:700;}
+.hero-art{position:relative;display:flex;align-items:center;justify-content:center;height:100%;}
+.hero-ring{position:absolute;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,#fff7d6 0%,#e9f7dc 70%,transparent 71%);opacity:.9;}
+.hero-card{position:relative;width:78%;max-width:430px;background:rgba(255,255,255,.74);border:3px solid #fff;border-radius:34px;padding:24px 24px 20px;backdrop-filter:blur(8px);box-shadow:var(--shadow);}
+.hero-card h3{font-size:22px;margin-bottom:10px;}
+.hero-card ul{padding-left:20px;line-height:1.9;color:var(--soft);font-size:16px;}
+.hero-parrot{width:220px;height:220px;margin:0 auto 12px;animation:floaty 2.8s ease-in-out infinite;filter:drop-shadow(0 14px 18px rgba(79,130,64,.18));}
+@keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+
+/* game */
+#game{display:grid;grid-template-rows:84px 1fr; background:linear-gradient(180deg,#d8f5ff 0%,#edf8e9 46%,#e6f6de 100%);}
+.topbar{display:flex;align-items:center;gap:14px;padding:18px 26px 10px;position:relative;z-index:3;}
+.top-pill{background:rgba(255,255,255,.9);border:2px solid #fff;border-radius:999px;padding:10px 16px;font-size:15px;font-weight:800;box-shadow:0 4px 12px rgba(60,100,60,.08);}
+.topbar .spacer{flex:1;}
+.icon-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid var(--line);box-shadow:0 5px 14px rgba(60,100,60,.08);font-size:22px;}
+.game-inner{padding:0 24px 24px;display:grid;grid-template-columns:1.18fr .82fr;gap:18px;height:calc(100% - 6px);}
+.scene{
+  position:relative;overflow:hidden;border-radius:30px;background:
+   radial-gradient(circle at 12% 10%,rgba(255,255,255,.8) 0 7%,transparent 7%),
+   radial-gradient(circle at 80% 11%,rgba(255,255,255,.7) 0 6%,transparent 6%),
+   linear-gradient(180deg,#d8f4ff 0%,#f3fbf0 54%,#e2f3d7 100%);
+  border:3px solid rgba(255,255,255,.95);box-shadow:var(--shadow);
+}
+.scene .sun{position:absolute;right:32px;top:26px;width:72px;height:72px;border-radius:50%;background:#ffe48a;box-shadow:0 0 0 14px rgba(255,228,138,.25);}
+.scene .forest-back{position:absolute;left:0;right:0;bottom:128px;height:150px;background:
+  radial-gradient(circle at 5% 70%,#79cf6f 0 26px,transparent 27px),
+  radial-gradient(circle at 15% 58%,#62ba5b 0 34px,transparent 35px),
+  radial-gradient(circle at 25% 68%,#86d777 0 26px,transparent 27px),
+  radial-gradient(circle at 36% 58%,#6dc665 0 36px,transparent 37px),
+  radial-gradient(circle at 48% 68%,#8adc7c 0 26px,transparent 27px),
+  radial-gradient(circle at 58% 56%,#5fb95a 0 36px,transparent 37px),
+  radial-gradient(circle at 69% 68%,#82d775 0 28px,transparent 29px),
+  radial-gradient(circle at 80% 56%,#67c260 0 36px,transparent 37px),
+  radial-gradient(circle at 92% 68%,#89db7b 0 28px,transparent 29px);
+  opacity:.94;
+}
+.scene .ground{position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(180deg,#95de7a,#68c05c);border-top-left-radius:48% 60px;border-top-right-radius:42% 54px;}
+.scene .ground::before{content:"";position:absolute;left:-1%;right:-1%;top:-40px;height:80px;background:linear-gradient(180deg,#a7e48d,#92db7a);border-radius:50% 50% 0 0 / 100% 100% 0 0;}
+.route{position:absolute;left:24px;right:24px;bottom:36px;height:186px;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(2,1fr);gap:14px 10px;z-index:2;}
+.node{position:relative;display:flex;align-items:center;justify-content:center;}
+.node .disc{width:34px;height:34px;border-radius:50%;background:#fff;border:3px solid #f2ddac;box-shadow:0 6px 0 #e7cd8b;position:relative;z-index:2;}
+.node.done .disc{background:linear-gradient(180deg,#ffda7d,#ffbb50);}
+.node.current .disc{animation:pulse 1.1s ease-in-out infinite;background:#fff6d8;}
+.node.bonus .disc{width:42px;height:42px;border-color:#ffd0dc;box-shadow:0 6px 0 #efb7c5;background:linear-gradient(180deg,#ffdce6,#ffc2d2);}
+.node.bonus::after{content:"🎁";position:absolute;font-size:18px;z-index:3;top:50%;left:50%;transform:translate(-50%,-54%);}
+.node .label{position:absolute;bottom:-16px;font-size:11px;font-weight:800;color:#6f6156;background:rgba(255,255,255,.8);padding:2px 6px;border-radius:999px;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.18);}}
+#parrot-token{position:absolute;width:92px;height:92px;z-index:5;transform:translate(-50%,-76%);transition:left .6s cubic-bezier(.34,1.4,.5,1), top .6s cubic-bezier(.34,1.4,.5,1);filter:drop-shadow(0 12px 16px rgba(75,123,63,.18));}
+#parrot-token.fly{animation:birdFly .8s ease;}
+#parrot-token.reward .gift{opacity:1;transform:translateX(-50%) scale(1);}
+#parrot-token.eat .beak{animation:peck .6s ease infinite;}
+#parrot-token.drink .beak{animation:sip .6s ease infinite;}
+#parrot-token .gift{position:absolute;left:50%;top:-14px;transform:translateX(-50%) scale(.3);opacity:0;transition:all .25s ease;font-size:28px;}
+@keyframes birdFly{0%{transform:translate(-50%,-76%) rotate(-4deg);}50%{transform:translate(-50%,-102%) rotate(3deg);}100%{transform:translate(-50%,-76%) rotate(0deg);}}
+@keyframes peck{0%,100%{transform:rotate(0);}50%{transform:rotate(14deg) translateY(2px);}}
+@keyframes sip{0%,100%{transform:rotate(0);}50%{transform:rotate(-12deg) translateY(1px);}}
+.scene-banner{position:absolute;top:20px;left:24px;background:rgba(255,255,255,.86);padding:11px 16px;border-radius:999px;border:2px solid #fff;font-size:15px;font-weight:800;box-shadow:0 5px 16px rgba(70,100,50,.08);z-index:2;}
+.stage-note{position:absolute;top:72px;left:24px;color:#6b7d63;font-size:14px;font-weight:700;z-index:2;}
+.reward-burst{position:absolute;inset:0;pointer-events:none;z-index:6;display:none;}
+.reward-burst.show{display:block;}
+.reward-burst i{position:absolute;font-style:normal;font-size:22px;animation:coinDrop 1.2s ease forwards;}
+@keyframes coinDrop{0%{transform:translate(0,0) scale(.6);opacity:0;}20%{opacity:1;}100%{transform:translate(var(--dx),var(--dy)) scale(1.05);opacity:0;}}
+
+.panel{background:rgba(255,253,246,.94);border:3px solid #fff;border-radius:30px;padding:20px 20px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:0;}
+.question-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.badge{padding:8px 14px;border-radius:999px;font-size:13px;font-weight:800;background:#eef8ea;color:#4f9d52;border:2px solid #d5efcf;}
+.badge.bonus{background:#fff0f4;color:#d36f8a;border-color:#ffd0dc;}
+.badge.audio{background:#e8f5f9;color:#3a8ca3;border-color:#c6e8ef;}
+.q-title{font-size:26px;font-weight:900;line-height:1.35;margin-top:16px;}
+.q-sub{font-size:14px;color:var(--soft);margin-top:8px;line-height:1.7;}
+.read-btn{margin-top:14px;align-self:flex-start;padding:12px 16px;border-radius:999px;background:#e7f5f8;border:2px solid #caebf1;color:#3c93a7;font-weight:800;}
+.prompt-box{margin-top:16px;background:#fff;border:2px dashed #eadbb4;border-radius:22px;padding:18px 16px;}
+.prompt-box .big{font-size:28px;font-weight:900;color:#4f9d52;}
+.prompt-box .sentence{font-size:26px;line-height:1.5;font-weight:800;word-break:break-word;}
+.prompt-box .zh{margin-top:8px;color:var(--soft);font-size:15px;line-height:1.7;}
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+.option-btn{min-height:58px;padding:14px 12px;background:#fff;border:2px solid var(--line);border-radius:18px;font-size:20px;font-weight:800;box-shadow:0 5px 0 #eadbb4;transition:transform .12s ease, background .2s ease;}
+.option-btn:active{transform:translateY(2px);box-shadow:0 3px 0 #eadbb4;}
+.option-btn.correct{background:#e6f7dd;border-color:#98d58d;color:#3e8f45;}
+.option-btn.wrong{background:#ffe5eb;border-color:#f6b3c3;color:#cb5c7f;}
+.spell-wrap{display:flex;flex-direction:column;gap:14px;margin-top:14px;}
+.spell-input{height:58px;border:2px solid var(--line);border-radius:18px;padding:0 18px;background:#fff;font-size:24px;font-weight:800;color:#4f9d52;text-align:center;letter-spacing:2px;outline:none;}
+.spell-actions{display:flex;gap:12px;}
+.sub-btn,.check-btn{flex:1;height:52px;border-radius:16px;font-weight:800;font-size:18px;}
+.sub-btn{background:#f6efe0;border:2px solid #eadbb4;color:#866e4e;}
+.check-btn{background:linear-gradient(180deg,#7ac7dc,#58aebe);color:#fff;}
+.feedback{margin-top:16px;min-height:28px;font-size:17px;font-weight:900;}
+.feedback.good{color:#4f9d52;}
+.feedback.bad{color:#d46d85;}
+.mini-progress{margin-top:auto;padding-top:16px;display:flex;align-items:center;gap:12px;}
+.progress-track{flex:1;height:14px;border-radius:999px;background:#eee2c3;overflow:hidden;}
+.progress-track i{display:block;height:100%;background:linear-gradient(90deg,#9fe38f,#67c260);border-radius:999px;}
+.progress-text{font-size:13px;color:var(--soft);font-weight:800;}
+
+/* modal */
+.modal{position:absolute;inset:0;background:rgba(44,67,41,.26);display:none;align-items:center;justify-content:center;z-index:20;padding:24px;}
+.modal.show{display:flex;}
+.modal-card{width:min(720px,90%);background:linear-gradient(180deg,#fffef7,#edf8ea);border:3px solid #fff;border-radius:34px;padding:28px 28px 24px;box-shadow:0 24px 40px rgba(35,63,36,.2);text-align:center;position:relative;}
+.modal-card h2{font-size:34px;line-height:1.2;}
+.modal-card p{margin-top:12px;font-size:17px;line-height:1.8;color:var(--soft);}
+.modal-actions{display:flex;gap:14px;justify-content:center;margin-top:24px;flex-wrap:wrap;}
+.rest-stage{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center;margin-top:20px;}
+.rest-scene{background:linear-gradient(180deg,#d8f4ff,#eef8e9);border-radius:26px;border:3px solid #fff;padding:18px;min-height:270px;position:relative;overflow:hidden;}
+.rest-scene .grass{position:absolute;left:0;right:0;bottom:0;height:92px;background:linear-gradient(180deg,#98e183,#69be5d);}
+.rest-scene .bowl,.rest-scene .water{position:absolute;bottom:32px;width:92px;height:62px;border-radius:20px 20px 28px 28px;background:#fff7d4;border:3px solid #f1d78f;display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 10px 16px rgba(97,136,74,.16);}
+.rest-scene .bowl{left:76px;}
+.rest-scene .water{right:76px;background:#e9f7ff;border-color:#bfe2f2;}
+.rest-parrot{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:170px;height:170px;animation:restFloat 2.2s ease-in-out infinite;}
+@keyframes restFloat{0%,100%{transform:translate(-50%,-50%);}50%{transform:translate(-50%,-54%);}}
+.rest-parrot.eating{animation:none;transform:translate(-62%,-44%) rotate(-10deg);}
+.rest-parrot.drinking{animation:none;transform:translate(-38%,-44%) rotate(9deg);}
+.rest-tips{text-align:left;background:rgba(255,255,255,.74);border:2px solid #fff;border-radius:26px;padding:20px;}
+.rest-tips h3{font-size:24px;}
+.rest-tips ul{padding-left:20px;line-height:1.9;color:var(--soft);margin-top:8px;}
+.report-list{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+.report-card{background:#fff;border:2px solid #f1e6c7;border-radius:20px;padding:16px;box-shadow:0 8px 16px rgba(70,100,50,.06);}
+.report-card strong{display:block;font-size:28px;color:var(--orange-d);} 
+.report-card span{display:block;margin-top:4px;color:var(--soft);font-weight:700;}
+.report-card.full{grid-column:1/3;}
+.wrong-list{display:flex;flex-direction:column;gap:8px;margin-top:10px;max-height:190px;overflow:auto;padding-right:4px;}
+.wrong-row{display:flex;justify-content:space-between;align-items:center;background:#fffaf1;border:2px solid #f1e6c7;border-radius:14px;padding:10px 12px;font-size:15px;gap:10px;}
+.tag{padding:4px 10px;border-radius:999px;background:#ffe8ef;color:#c85c7c;font-weight:800;font-size:12px;white-space:nowrap;}
+.finish-stars{display:flex;justify-content:center;gap:10px;margin-top:18px;font-size:28px;}
+.hidden{display:none !important;}
+@media (max-width:1100px){
+  #app{width:100vw;height:100vh;min-height:auto;border-radius:0;aspect-ratio:auto;}
+  .home-inner,.game-inner,.rest-stage{grid-template-columns:1fr;}
+  .game-inner{grid-template-rows:1fr auto;overflow:auto;}
+  .route{grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(4,1fr);height:250px;}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <section class="view on" id="home">
+    <div class="home-cloud c1"></div>
+    <div class="home-cloud c2"></div>
+    <div class="forest-layer"></div>
+    <div class="home-hill"></div>
+    <div class="home-inner">
+      <div class="hero-copy">
+        <h1>小鹦鹉单词闯关</h1>
+        <p>跟着小鹦鹉在森林里闯关！练习沪教牛津版三年级上册的单词、句型和听力。答对就向前飞，答完 12 题还能休息一下。</p>
+        <div class="hero-pills">
+          <span class="pill">16:9 横版</span>
+          <span class="pill">森林可爱风</span>
+          <span class="pill">金币奖励</span>
+          <span class="pill">慢速朗读</span>
+        </div>
+        <div class="home-actions">
+          <button class="btn-main" id="startBtn">开始冒险</button>
+          <button class="btn-sub" id="reportBtn">学习报告</button>
+          <button class="btn-sub" id="resetBtn">重新开始</button>
+        </div>
+        <div style="position:relative;z-index:3;margin-top:12px;color:#66815e;font-size:12px;font-weight:700;max-width:560px;">练习按沪教牛津版 3A（12 个 Unit）组织；不同印次或学校进度请以孩子课本为准。</div>
+        <div class="home-stats">
+          <div class="stat-card"><strong id="statAnswered">0</strong><span>已完成题目</span></div>
+          <div class="stat-card"><strong id="statScore">0%</strong><span>当前正确率</span></div>
+          <div class="stat-card"><strong id="statCoins">0</strong><span>金币奖励</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-ring"></div>
+        <div class="hero-card">
+          <div class="hero-parrot" id="homeParrot"></div>
+          <h3>本次优化内容</h3>
+          <ul>
+            <li>小鹦鹉沿路线一格一格往前飞</li>
+            <li>奖励关出现完整句子题目</li>
+            <li>奖励关通过后会得到礼品袋和金币</li>
+            <li>每道题自动慢速朗读，也可重复播放</li>
+            <li>第 12 题后安排休息动画</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="game">
+    <div class="topbar">
+      <div class="top-pill" id="topStage">第 1 关</div>
+      <div class="top-pill" id="topMode">普通关</div>
+      <div class="top-pill" id="topCoins">金币 0</div>
+      <div class="top-pill" id="topAnswered">已做 0 题</div>
+      <div class="spacer"></div>
+      <button class="icon-btn" id="muteBtn" title="朗读开关">🔊</button>
+      <button class="icon-btn" id="backHomeBtn" title="返回首页">🏠</button>
+    </div>
+    <div class="game-inner">
+      <div class="scene" id="scene">
+        <div class="sun"></div>
+        <div class="scene-banner">森林闯关路线</div>
+        <div class="stage-note" id="sceneNote">答对后，小鹦鹉会飞到下一格。</div>
+        <div class="forest-back"></div>
+        <div class="ground"></div>
+        <div class="route" id="route"></div>
+        <div id="parrot-token"></div>
+        <div class="reward-burst" id="rewardBurst"></div>
+      </div>
+      <div class="panel">
+        <div class="question-head">
+          <span class="badge" id="qBadge">普通关卡</span>
+          <span class="badge audio">慢速朗读已开启</span>
+        </div>
+        <div class="q-title" id="qTitle">准备开始吧！</div>
+        <div class="q-sub" id="qSub">题目会自动朗读，孩子也可以点按钮再听一次。</div>
+        <button class="read-btn" id="readBtn">🔊 再听一遍</button>
+        <div id="questionArea"></div>
+        <div class="feedback" id="feedback"></div>
+        <div class="mini-progress">
+          <div class="progress-track"><i id="progressBar" style="width:0%"></i></div>
+          <div class="progress-text" id="progressText">0 / 24</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="reportModal">
+    <div class="modal-card">
+      <h2>学习报告</h2>
+      <p>这里会记录闯关进度、正确率、奖励金币，以及需要多练的单词。</p>
+      <div class="report-list" id="reportList"></div>
+      <div class="modal-actions">
+        <button class="btn-sub" id="closeReportBtn">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="restModal">
+    <div class="modal-card">
+      <h2>小鹦鹉休息一下</h2>
+      <p>已经完成 12 道题啦！现在让小鹦鹉补充体力，吃一点口粮，再喝一点水，然后继续冒险。</p>
+      <div class="rest-stage">
+        <div class="rest-scene">
+          <div class="rest-parrot" id="restParrot"></div>
+          <div class="bowl">🌾</div>
+          <div class="water">💧</div>
+          <div class="grass"></div>
+        </div>
+        <div class="rest-tips">
+          <h3>休息小动画</h3>
+          <ul>
+            <li>先做吃粮动作，再做喝水动作</li>
+            <li>帮助孩子在学习中停一停，缓一缓</li>
+            <li>点击继续后，回到当前关卡继续答题</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-main" id="continueAfterRest">继续闯关</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="finishModal">
+    <div class="modal-card">
+      <h2>全部闯关完成！</h2>
+      <p>小鹦鹉已经顺利飞完全程。你帮助它学会了更多单词，也拿到了奖励金币，做得太棒啦！</p>
+      <div class="finish-stars">⭐ ⭐ ⭐</div>
+      <div class="modal-actions">
+        <button class="btn-main" id="restartGameBtn">再玩一次</button>
+        <button class="btn-sub" id="finishReportBtn">查看报告</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const LEVELS = [
+ {t:'U1 Hello!',w:[['hello','你好'],['I','我'],['Miss','方老师/小姐'],['Peter','彼得'],['Alice','爱丽丝'],['Kitty','凯蒂'],['Joe','乔']],patterns:[['Hello, I’m Peter.','你好，我是彼得。','Peter']]},
+ {t:'U2 How are you?',w:[['Mr','先生'],['Mrs','太太'],['are','是'],['fine','很好'],['goodbye','再见'],['hi','嗨'],['thank','谢谢'],['you','你'],['How','怎样']],patterns:[['How are you? I’m ____.','你好吗？我很好。','fine'],['I’m fine. Thank you.','我很好，谢谢。','Thank']]},
+ {t:'U3 Are you Kitty?',w:[['boy','男孩'],['girl','女孩'],['am','是'],['no','不'],['not','不是'],['yes','是的']],patterns:[['Are you Kitty? Yes, I ____.','你是凯蒂吗？是的。','am'],['Are you a boy? Yes, I ____.','你是男孩吗？是的。','am']]},
+ {t:'U4 My friends',w:[['tall','高的'],['short','矮的/短的'],['fat','胖的'],['thin','瘦的'],['friend','朋友'],['he','他'],['is','是'],['my','我的'],['she','她'],['this','这']],patterns:[['This is Kitty. She’s thin.','这是凯蒂。她很瘦。','thin'],['He is tall.','他很高。','tall']]},
+ {t:'U5 My family',w:[['father','爸爸'],['mother','妈妈'],['brother','兄弟'],['sister','姐妹'],['me','我'],['beautiful','漂亮的'],['who','谁']],patterns:[['Who is he? He’s my ____.','他是谁？他是我的爸爸。','father'],['Who is she? She’s my ____.','她是谁？她是我的妈妈。','mother']]},
+ {t:'U6 Me',w:[['hair','头发'],['eye','眼睛'],['ear','耳朵'],['nose','鼻子'],['mouth','嘴巴'],['face','脸'],['big','大的'],['long','长的'],['look','看'],['small','小的']],patterns:[['My hair is long.','我的头发很长。','long'],['My ears are small.','我的耳朵很小。','small']]},
+ {t:'U7 In the classroom',w:[['blackboard','黑板'],['door','门'],['window','窗户'],['clean','擦干净'],['close','关上'],['late','迟到'],['look at','看'],['open','打开'],['please','请'],['the','这/那']],patterns:[['Close the door, please.','请关上门。','Close'],['Open the window, please.','请打开窗户。','Open']]},
+ {t:'U8 At the fruit shop',w:[['apple','苹果'],['banana','香蕉'],['orange','橙子'],['pear','梨'],['dad','爸爸'],['good','好的'],['here','给你/这里'],['how much','多少钱'],['it','它'],['they','它们']],patterns:[['How much is it? It is ____ yuan.','这个多少钱？两元。','two'],['How much are they? They are ____ yuan.','它们多少钱？六元。','six'],['Here you are. ____ you.','给你。谢谢你。','Thank']]},
+ {t:'U9 In my room',w:[['chair','椅子'],['desk','书桌'],['pen','钢笔'],['pencil','铅笔'],['ruler','尺子'],['schoolbag','书包'],['bed','床'],['book','书'],['mum','妈妈'],['these','这些'],['your','你的']],patterns:[['This is my bed.','这是我的床。','This'],['These are my books.','这些是我的书。','These']]},
+ {t:'U10 Numbers',w:[['one','一'],['two','二'],['three','三'],['four','四'],['five','五'],['six','六'],['seven','七'],['eight','八'],['nine','九'],['ten','十'],['how many','多少']],patterns:[['How many boys? ____ boys.','有多少个男孩？三个男孩。','Three'],['How many apples? ____ apples.','有多少个苹果？五个苹果。','Five']]},
+ {t:'U11 Small animals',w:[['mouse','老鼠'],['cat','猫'],['dog','狗'],['rabbit','兔子'],['fish','鱼'],['its','它的'],['tail','尾巴'],['what','什么']],patterns:[['What is it? It is a ____.','它是什么？它是一只兔子。','rabbit'],['Its ears are long.','它的耳朵很长。','long']]},
+ {t:'U12 The four seasons',w:[['spring','春天'],['summer','夏天'],['autumn','秋天'],['winter','冬天'],['cold','寒冷的'],['cool','凉爽的'],['hot','炎热的'],['in','在……'],['warm','温暖的']],patterns:[['In spring, it is warm.','春天很温暖。','warm'],['In summer, it is hot.','夏天很热。','hot'],['In winter, it is cold.','冬天很冷。','cold']]}
+];
+const WORD_POOL = LEVELS.flatMap(level => level.w.map(([en,zh]) => ({en,zh,topic:level.t})));
+const SENTENCE_BANK = LEVELS.flatMap(level => level.patterns.map(([sentence,zh,answer])=>({sentence,zh,answer,topic:level.t})));
+const PRAISE = ['太棒啦！','真聪明！','答对啦！','好厉害！'];
+const ENCOURAGE = ['再试一次！','别着急！','加油哦！'];
+const BONUS_BANK = [
+ {type:'choice',sentence:'How are you? I’m _____.',display:'How are you? I’m _____.',zh:'你好吗？我很好。',answer:'fine',options:['fine','tall','cold','rabbit']},
+ {type:'choice',sentence:'Who is he? He’s my _____.',display:'Who is he? He’s my _____.',zh:'他是谁？他是我的爸爸。',answer:'father',options:['father','sister','friend','mother']},
+ {type:'blank',sentence:'This is my bed.',display:'This is my _____.',zh:'这是我的床。',answer:'bed'},
+ {type:'choice',sentence:'In spring, it is _____.',display:'In spring, it is _____.',zh:'春天很温暖。',answer:'warm',options:['warm','hot','cold','cool']}
+];
+const STORE_KEY = 'parrotWordGame_landscape_g3_v3';
+const COURSE_KEY = 'parrotWordGame_landscape_g3_course_v3';
+const $ = id => document.getElementById(id);
+let state = loadState();
+let course = loadCourse();
+let currentVoiceText = '';
+let restShownThisRun = false;
+
+function loadState(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(STORE_KEY));
+    if(raw){
+      return Object.assign({answered:0,correct:0,coins:0,wrong:{},muted:false,completed:false}, raw);
+    }
+  }catch(e){}
+  return {answered:0,correct:0,coins:0,wrong:{},muted:false,completed:false};
+}
+function loadCourse(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(COURSE_KEY));
+    if(Array.isArray(raw) && raw.length) return raw;
+  }catch(e){}
+  return [];
+}
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function saveCourse(){ localStorage.setItem(COURSE_KEY, JSON.stringify(course)); }
+function clearCourse(){ localStorage.removeItem(COURSE_KEY); course = []; }
+function resetState(keepMute = true){
+  const muted = keepMute ? state.muted : false;
+  state = {answered:0,correct:0,coins:0,wrong:{},muted,completed:false};
+  clearCourse();
+  saveState();
+}
+function shuffle(arr){
+  const copy = arr.slice();
+  for(let i = copy.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+function randomPick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+function distract(answer, n){
+  const pool = WORD_POOL.map(x => x.en).filter(w => w !== answer);
+  const out = [];
+  while(out.length < n){
+    const item = randomPick(pool);
+    if(!out.includes(item)) out.push(item);
+  }
+  return out;
+}
+function buildCourse(){
+  const stages=[];
+  const listeningItems=[
+    {prompt:'How are you?',zh:'听一听，选出合适的回答。',answer:'I’m fine. Thank you.',options:['I’m fine. Thank you.','This is my bed.','It is a rabbit.','Three boys.'],topic:'U2 How are you?'},
+    {prompt:'Are you Kitty?',zh:'听一听，选出合适的回答。',answer:'Yes, I am.',options:['Yes, I am.','I’m fine.','She is tall.','Open the door.'],topic:'U3 Are you Kitty?'},
+    {prompt:'Who is she?',zh:'听一听，选出合适的回答。',answer:'She’s my mother.',options:['She’s my mother.','He’s my father.','I’m fine.','It is a cat.'],topic:'U5 My family'},
+    {prompt:'Close the door, please.',zh:'听一听，选出你听到的意思。',answer:'请关上门。',options:['请关上门。','请打开窗户。','这是我的书。','春天很温暖。'],topic:'U7 In the classroom'},
+    {prompt:'How much is it?',zh:'听一听，选出合适的回答。',answer:'Two yuan.',options:['Two yuan.','Three boys.','I’m fine.','It is a rabbit.'],topic:'U8 At the fruit shop'},
+    {prompt:'How many boys?',zh:'听一听，选出合适的回答。',answer:'Three boys.',options:['Three boys.','Two apples.','I’m fine.','A rabbit.'],topic:'U10 Numbers'},
+    {prompt:'What is it?',zh:'听一听，选出合适的回答。',answer:'It is a rabbit.',options:['It is a rabbit.','This is my room.','I am fine.','Five apples.'],topic:'U11 Small animals'},
+    {prompt:'In winter, it is cold.',zh:'听一听，选出你听到的意思。',answer:'冬天很冷。',options:['冬天很冷。','夏天很热。','春天很温暖。','秋天很凉爽。'],topic:'U12 The four seasons'}
+  ];
+  // 第一轮：12 个单元逐单元出现，混合单词、句型和听力，不跳单元。
+  const firstRoundTypes=['choice','listen','sentence','blank','listen','sentence','choice','listen','sentence','choice','listen','sentence'];
+  LEVELS.forEach((level, index)=>{
+    const word=level.w[index % level.w.length];
+    const pattern=level.patterns[0];
+    const type=firstRoundTypes[index];
+    if(type==='choice' || type==='blank'){
+      stages.push({kind:'regular',qtype:type,en:word[0],zh:word[1],topic:level.t});
+    } else if(type==='sentence'){
+      stages.push({kind:'regular',qtype:'sentence',sentence:pattern[0],zh:pattern[1],answer:pattern[2],topic:level.t,options:buildSentenceOptions(pattern[2])});
+    } else {
+      const listen=listeningItems.find(x=>x.topic===level.t) || listeningItems[index % listeningItems.length];
+      stages.push({kind:'regular',qtype:'listen',...listen,topic:level.t});
+    }
+  });
+  // 第二轮：8 道复习题，覆盖单词拼写、句型理解与听力。
+  const reviewUnits=[LEVELS[1],LEVELS[3],LEVELS[5],LEVELS[7],LEVELS[8],LEVELS[9],LEVELS[10],LEVELS[11]];
+  reviewUnits.forEach((level,index)=>{
+    if(index<4){
+      const word=level.w[(index+2)%level.w.length];
+      stages.push({kind:'regular',qtype:index%2===0?'choice':'blank',en:word[0],zh:word[1],topic:level.t});
+    } else if(index<6){
+      const pattern=level.patterns[Math.min(1,level.patterns.length-1)];
+      stages.push({kind:'regular',qtype:'sentence',sentence:pattern[0],zh:pattern[1],answer:pattern[2],topic:level.t,options:buildSentenceOptions(pattern[2])});
+    } else {
+      const listen=listeningItems.find(x=>x.topic===level.t) || listeningItems[index % listeningItems.length];
+      stages.push({kind:'regular',qtype:'listen',...listen,topic:level.t});
+    }
+  });
+  // 每完成 5 道普通题，插入 1 道短奖励关。
+  const mixed=[]; let bonusIndex=0;
+  stages.forEach((stage,idx)=>{
+    mixed.push(stage);
+    if((idx+1)%5===0 && bonusIndex<BONUS_BANK.length){
+      mixed.push({kind:'bonus',bonusIndex:bonusIndex+1,...BONUS_BANK[bonusIndex]});
+      bonusIndex++;
+    }
+  });
+  mixed.forEach((stage,idx)=>stage.stageIndex=idx);
+  return mixed;
+}
+function buildSentenceOptions(answer){
+  const pool=['yes','no','fine','father','mother','friend','tall','thin','long','small','warm','hot','cold','cool','rabbit','cat','dog','bed','book','three boys'];
+  return shuffle([answer,...shuffle(pool.filter(x=>x!==answer)).slice(0,3)]);
+}
+function ensureCourse(){
+  if(!Array.isArray(course) || !course.length){
+    course = buildCourse();
+    saveCourse();
+  }
+  return course;
+}
+
+function parrotSVG(extraClass = ''){
+  return `
+  <svg class="${extraClass}" viewBox="0 0 200 200" width="100%" height="100%" aria-hidden="true">
+    <ellipse cx="112" cy="118" rx="54" ry="44" fill="#8cd96e"/>
+    <ellipse cx="126" cy="125" rx="28" ry="24" fill="#b5ef8f"/>
+    <circle cx="84" cy="86" r="34" fill="#8cd96e"/>
+    <circle cx="76" cy="82" r="13" fill="#fff"/>
+    <circle cx="80" cy="84" r="5.5" fill="#333"/>
+    <path class="beak" d="M55 93 L38 102 L56 111 Z" fill="#ffb34f" />
+    <path d="M126 82c14 0 28 9 32 19-13 4-24 3-33-2z" fill="#ff8eb5" opacity=".92"/>
+    <path d="M149 122c18 9 31 26 32 43-20-5-34-17-43-32z" fill="#4fb2c9" opacity=".94"/>
+    <path d="M64 119c-10 8-18 22-20 35 17-4 27-13 33-26z" fill="#6dc665" opacity=".9"/>
+    <ellipse cx="108" cy="155" rx="24" ry="10" fill="rgba(110,140,90,.12)"/>
+  </svg>
+  <div class="gift">🛍️</div>`;
+}
+$('homeParrot').innerHTML = parrotSVG('');
+$('parrot-token').innerHTML = parrotSVG('');
+$('restParrot').innerHTML = parrotSVG('');
+
+function updateMuteBtn(){ $('muteBtn').textContent = state.muted ? '🔇' : '🔊'; }
+function rateText(){ return state.answered ? Math.round(state.correct / state.answered * 100) + '%' : '0%'; }
+function updateStartLabel(){
+  $('startBtn').textContent = (state.answered > 0 && !state.completed) ? '继续冒险' : '开始冒险';
+}
+function updateHomeStats(){
+  $('statAnswered').textContent = state.answered;
+  $('statScore').textContent = rateText();
+  $('statCoins').textContent = state.coins;
+  updateStartLabel();
+}
+function updateTopbar(){
+  const idx = Math.min(state.answered, course.length - 1);
+  const stage = course[idx] || course[course.length - 1];
+  $('topStage').textContent = state.answered >= course.length ? '已完成' : `第 ${state.answered + 1} 关`;
+  $('topMode').textContent = stage && stage.kind === 'bonus' ? '奖励关' : '普通关';
+  $('topCoins').textContent = `金币 ${state.coins}`;
+  $('topAnswered').textContent = `已做 ${state.answered} 题`;
+  $('progressBar').style.width = ((Math.min(state.answered, course.length) / course.length) * 100) + '%';
+  $('progressText').textContent = `${Math.min(state.answered, course.length)} / ${course.length}`;
+}
+function show(viewId){
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  $(viewId).classList.add('on');
+}
+
+function buildRoute(){
+  const route = $('route');
+  route.innerHTML = '';
+  course.forEach((stage, idx) => {
+    const node = document.createElement('div');
+    node.className = 'node ' + (stage.kind === 'bonus' ? 'bonus ' : '');
+    if(idx < state.answered) node.classList.add('done');
+    if(idx === state.answered && state.answered < course.length) node.classList.add('current');
+    const row = idx < 12 ? 1 : 2;
+    const col = idx < 12 ? idx + 1 : 24 - idx;
+    node.style.gridRow = row;
+    node.style.gridColumn = col;
+    node.innerHTML = `<div class="disc"></div><span class="label">${stage.kind === 'bonus' ? '奖励' : idx + 1}</span>`;
+    route.appendChild(node);
+  });
+  placeParrot(false);
+}
+
+function placeParrot(animate = true){
+  const parrot = $('parrot-token');
+  const route = $('route');
+  const nodes = route.querySelectorAll('.node');
+  const targetIndex = Math.min(state.answered, course.length - 1);
+  let targetNode = nodes[targetIndex];
+  if(!targetNode){
+    targetNode = nodes[nodes.length - 1];
+  }
+  if(!targetNode) return;
+  const sceneRect = $('scene').getBoundingClientRect();
+  const nodeRect = targetNode.getBoundingClientRect();
+  parrot.style.left = (nodeRect.left - sceneRect.left + nodeRect.width / 2) + 'px';
+  parrot.style.top = (nodeRect.top - sceneRect.top + 18) + 'px';
+  if(animate){
+    parrot.classList.remove('fly');
+    void parrot.offsetWidth;
+    parrot.classList.add('fly');
+    setTimeout(()=>parrot.classList.remove('fly'), 820);
+  }
+}
+window.addEventListener('resize', () => placeParrot(false));
+
+let synthReady = false;
+let voices = [];
+function initVoices(){
+  if(!('speechSynthesis' in window)) return;
+  voices = speechSynthesis.getVoices();
+  synthReady = true;
+}
+if('speechSynthesis' in window){
+  initVoices();
+  speechSynthesis.onvoiceschanged = initVoices;
+}
+function chooseVoice(langPrefix){
+  if(!voices.length) return null;
+  const preferred = voices.find(v => /Aria|Jenny|Samantha|Google US English|Microsoft Mia/i.test(v.name) && v.lang.startsWith(langPrefix));
+  if(preferred) return preferred;
+  return voices.find(v => v.lang && v.lang.startsWith(langPrefix)) || null;
+}
+function speakText(text, lang = 'en-US'){
+  currentVoiceText = text;
+  if(state.muted || !('speechSynthesis' in window)) return;
+  try{
+    speechSynthesis.cancel();
+    const parts = String(text).split(/(?<=[.!?])\s+/).filter(Boolean);
+    parts.forEach((part, index) => {
+      const u = new SpeechSynthesisUtterance(part.trim());
+      u.lang = lang;
+      u.rate = lang.startsWith('en') ? 0.62 : 0.78;
+      u.pitch = 1.0;
+      const v = chooseVoice(lang.split('-')[0]);
+      if(v) u.voice = v;
+      if(index > 0){
+        u.volume = 1;
+      }
+      speechSynthesis.speak(u);
+    });
+  }catch(e){ console.log(e); }
+}
+$('readBtn').onclick = () => {
+  if(!currentVoiceText) return;
+  const isChinese = /[\u4e00-\u9fa5]/.test(currentVoiceText);
+  speakText(currentVoiceText, isChinese ? 'zh-CN' : 'en-US');
+};
+
+function setFeedback(text, good){
+  const f = $('feedback');
+  f.textContent = text;
+  f.className = 'feedback ' + (good ? 'good' : 'bad');
+}
+function recordWrong(label, answer){
+  if(!state.wrong[label]) state.wrong[label] = { answer, count:0 };
+  state.wrong[label].count += 1;
+}
+function makeRegularChoice(stage){
+  const options = shuffle([...distract(stage.en, 3), stage.en]);
+  return `
+    <div class="prompt-box">
+      <div class="big">${stage.zh}</div>
+      <div class="zh">请选择正确的英文单词。</div>
+    </div>
+    <div class="option-grid">
+      ${options.map(word => `<button class="option-btn" data-answer="${word}">${word}</button>`).join('')}
+    </div>`;
+}
+function makeRegularBlank(stage){
+  return `
+    <div class="prompt-box">
+      <div class="big">${stage.zh}</div>
+      <div class="zh">请输入对应的英文单词。</div>
+    </div>
+    <div class="spell-wrap">
+      <input class="spell-input" id="spellInput" autocomplete="off" placeholder="请输入英文" />
+      <div class="spell-actions">
+        <button class="sub-btn" id="clearSpellBtn">清空</button>
+        <button class="check-btn" id="checkSpellBtn">检查答案</button>
+      </div>
+    </div>`;
+}
+function makeBonus(stage){
+  if(stage.type === 'choice'){
+    const opts = shuffle(stage.options.slice());
+    return `
+      <div class="prompt-box">
+        <div class="sentence">${stage.display}</div>
+        <div class="zh">${stage.zh}</div>
+      </div>
+      <div class="option-grid">
+        ${opts.map(word => `<button class="option-btn" data-answer="${word}">${word}</button>`).join('')}
+      </div>`;
+  }
+  return `
+    <div class="prompt-box">
+      <div class="sentence">${stage.display}</div>
+      <div class="zh">${stage.zh}</div>
+    </div>
+    <div class="spell-wrap">
+      <input class="spell-input" id="spellInput" autocomplete="off" placeholder="填一个词" />
+      <div class="spell-actions">
+        <button class="sub-btn" id="clearSpellBtn">清空</button>
+        <button class="check-btn" id="checkSpellBtn">提交</button>
+      </div>
+    </div>`;
+}
+function renderQuestion(){
+  if(state.answered >= course.length){
+    state.completed = true;
+    saveState();
+    saveCourse();
+    $('finishModal').classList.add('show');
+    return;
+  }
+  updateTopbar();
+  buildRoute();
+  const stage = course[state.answered];
+  $('qBadge').textContent = stage.kind === 'bonus' ? '奖关' : '闯关';
+  $('qBadge').className = 'badge ' + (stage.kind === 'bonus' ? 'bonus' : '');
+  $('qTitle').textContent = stage.kind === 'bonus' ? '答对拿金币！'  : stage.topic;
+  $('qSub').textContent = stage.kind === 'bonus'
+    ? '读句子，选答案。答对得金币！'
+    : '答对一题，小鹦鹉就会往前飞一格。';
+  $('sceneNote').textContent = stage.kind === 'bonus' ? '奖关！拿金币！' : '答对，小鹦鹉向前飞一格！';
+  $('feedback').textContent = '';
+  $('feedback').className = 'feedback';
+  if(stage.kind === 'regular'){
+    if(stage.qtype === 'choice'){
+      $('questionArea').innerHTML = makeRegularChoice(stage);
+      currentVoiceText = stage.en;
+      setTimeout(() => speakText(stage.en, 'en-US'), 250);
+      document.querySelectorAll('[data-answer]').forEach(btn => {
+        btn.onclick = () => checkAnswer(btn, btn.dataset.answer.toLowerCase() === stage.en.toLowerCase(), stage.en, stage.zh, false);
+      });
+    } else if(stage.qtype === 'blank') {
+      $('questionArea').innerHTML = makeRegularBlank(stage);
+      currentVoiceText = stage.en;
+      setTimeout(() => speakText(stage.en, 'en-US'), 250);
+      $('clearSpellBtn').onclick = () => $('spellInput').value = '';
+      $('checkSpellBtn').onclick = () => {
+        const value = $('spellInput').value.trim().toLowerCase();
+        checkInputAnswer(value === stage.en.toLowerCase(), stage.en, stage.zh, false);
+      };
+      $('spellInput').addEventListener('keydown', e => { if(e.key === 'Enter') $('checkSpellBtn').click(); });
+    } else if(stage.qtype === 'sentence') {
+      const display = stage.sentence.replace(stage.answer,'_____');
+      $('questionArea').innerHTML = `<div class="prompt-box"><div class="sentence">${display}</div><div class="zh">${stage.zh} 请选择正确的单词。</div></div><div class="option-grid">${stage.options.map(w=>`<button class="option-btn" data-answer="${w}">${w}</button>`).join('')}</div>`;
+      currentVoiceText = stage.sentence;
+      setTimeout(() => speakText(stage.sentence, 'en-US'), 250);
+      document.querySelectorAll('[data-answer]').forEach(btn => btn.onclick=()=>checkAnswer(btn,btn.dataset.answer.toLowerCase()===stage.answer.toLowerCase(),stage.answer,stage.zh,false));
+    } else if(stage.qtype === 'listen') {
+      $('questionArea').innerHTML = `<div class="prompt-box"><div class="big">🎧 听一听</div><div class="zh">${stage.zh}</div><button class="listen-btn" id="listenAgainBtn">🔊 再听一次</button></div><div class="option-grid">${stage.options.map(w=>`<button class="option-btn" data-answer="${w}">${w}</button>`).join('')}</div>`;
+      currentVoiceText = stage.prompt;
+      setTimeout(() => speakText(stage.prompt, 'en-US'), 300);
+      $('listenAgainBtn').onclick=()=>speakText(stage.prompt,'en-US');
+      document.querySelectorAll('[data-answer]').forEach(btn => btn.onclick=()=>checkAnswer(btn,btn.dataset.answer.toLowerCase()===stage.answer.toLowerCase(),stage.answer,stage.zh,false));
+    }
+  } else {
+    $('questionArea').innerHTML = makeBonus(stage);
+    currentVoiceText = stage.sentence;
+    setTimeout(() => speakText(stage.sentence, 'en-US'), 250);
+    if(stage.type === 'choice'){
+      document.querySelectorAll('[data-answer]').forEach(btn => {
+        btn.onclick = () => checkAnswer(btn, btn.dataset.answer.toLowerCase() === stage.answer.toLowerCase(), stage.answer, stage.zh, true);
+      });
+    } else {
+      $('clearSpellBtn').onclick = () => $('spellInput').value = '';
+      $('checkSpellBtn').onclick = () => {
+        const value = $('spellInput').value.trim().toLowerCase();
+        checkInputAnswer(value === stage.answer.toLowerCase(), stage.answer, stage.zh, true);
+      };
+      $('spellInput').addEventListener('keydown', e => { if(e.key === 'Enter') $('checkSpellBtn').click(); });
+    }
+  }
+}
+
+function lockButtons(){
+  document.querySelectorAll('.option-btn, .sub-btn, .check-btn, .spell-input').forEach(el => el.disabled = true);
+}
+function checkAnswer(btn, isCorrect, answer, zh, isBonus){
+  state.answered += 1;
+  if(isCorrect){
+    state.correct += 1;
+    btn.classList.add('correct');
+    setFeedback(randomPick(PRAISE), true);
+    if(isBonus){
+      state.coins += 20;
+      playReward();
+    }
+    saveState();
+    saveCourse();
+    updateHomeStats();
+    lockButtons();
+    setTimeout(() => { buildRoute(); placeParrot(true); afterAdvance(); }, 420);
+  } else {
+    btn.classList.add('wrong');
+    state.answered -= 1;
+    recordWrong(zh, answer);
+    saveState();
+    setFeedback(randomPick(ENCOURAGE), false);
+    setTimeout(() => btn.classList.remove('wrong'), 800);
+  }
+}
+function checkInputAnswer(isCorrect, answer, zh, isBonus){
+  const input = $('spellInput');
+  if(isCorrect){
+    state.answered += 1;
+    state.correct += 1;
+    input.style.borderColor = '#95d18d';
+    setFeedback(randomPick(PRAISE), true);
+    if(isBonus){
+      state.coins += 20;
+      playReward();
+    }
+    saveState();
+    saveCourse();
+    updateHomeStats();
+    lockButtons();
+    setTimeout(() => { buildRoute(); placeParrot(true); afterAdvance(); }, 420);
+  } else {
+    input.style.borderColor = '#f6b3c3';
+    recordWrong(zh, answer);
+    saveState();
+    setFeedback(randomPick(ENCOURAGE), false);
+    setTimeout(() => { input.style.borderColor = ''; input.focus(); }, 700);
+  }
+}
+function playReward(){
+  const parrot = $('parrot-token');
+  parrot.classList.add('reward');
+  setTimeout(() => parrot.classList.remove('reward'), 1500);
+  const burst = $('rewardBurst');
+  burst.innerHTML = '';
+  const startX = parrot.offsetLeft;
+  const startY = parrot.offsetTop - 20;
+  ['🪙','🪙','✨','🪙','✨','🪙'].forEach((ch, i) => {
+    const coin = document.createElement('i');
+    coin.textContent = ch;
+    coin.style.left = startX + 'px';
+    coin.style.top = startY + 'px';
+    coin.style.setProperty('--dx', ((i - 2.5) * 30) + 'px');
+    coin.style.setProperty('--dy', (60 + Math.random() * 40) + 'px');
+    coin.style.animationDelay = (i * .05) + 's';
+    burst.appendChild(coin);
+  });
+  burst.classList.add('show');
+  setTimeout(() => { burst.classList.remove('show'); burst.innerHTML=''; }, 1400);
+}
+function afterAdvance(){
+  updateTopbar();
+  if(state.answered === 12 && !restShownThisRun){
+    restShownThisRun = true;
+    showRestModal();
+    return;
+  }
+  setTimeout(renderQuestion, 520);
+}
+
+function animateRest(){
+  const p = $('restParrot');
+  p.className = 'rest-parrot';
+  setTimeout(() => p.classList.add('eating'), 200);
+  setTimeout(() => { p.classList.remove('eating'); p.classList.add('drinking'); }, 1300);
+  setTimeout(() => { p.classList.remove('drinking'); }, 2500);
+}
+function showRestModal(){
+  $('restModal').classList.add('show');
+  animateRest();
+}
+
+function openReport(){
+  ensureCourse();
+  const rate = rateText();
+  const wrongEntries = Object.entries(state.wrong).sort((a,b) => b[1].count - a[1].count).slice(0,6);
+  $('reportList').innerHTML = `
+    <div class="report-card"><strong>${state.answered}</strong><span>已完成题目</span></div>
+    <div class="report-card"><strong>${rate}</strong><span>当前正确率</span></div>
+    <div class="report-card"><strong>${state.coins}</strong><span>累计金币</span></div>
+    <div class="report-card"><strong>${course.length || 24}</strong><span>总关卡数</span></div>
+    <div class="report-card full"><strong style="font-size:22px;color:#5b4a37;">冒险进度</strong><span style="margin-top:8px;display:block;">当前处于第 ${Math.min(state.answered + 1, course.length)} 关，奖励关共 4 次，每关奖励 20 金币。</span></div>
+    <div class="report-card full">
+      <strong style="font-size:22px;color:#5b4a37;">需要多练的题目</strong>
+      <div class="wrong-list">
+        ${wrongEntries.length ? wrongEntries.map(([label, info]) => `<div class="wrong-row"><span>${label} → ${info.answer}</span><span class="tag">错 ${info.count} 次</span></div>`).join('') : '<div class="wrong-row"><span>暂时没有需要重点复习的题目</span><span class="tag">很好</span></div>'}
+      </div>
+    </div>`;
+  $('reportModal').classList.add('show');
+}
+
+function startGame(fresh = false){
+  if(fresh){
+    resetState(true);
+    course = buildCourse();
+    saveCourse();
+    restShownThisRun = false;
+    state.completed = false;
+    saveState();
+  } else {
+    ensureCourse();
+    if(state.completed && state.answered >= course.length){
+      state.completed = true;
+    }
+  }
+  show('game');
+  updateTopbar();
+  updateHomeStats();
+  renderQuestion();
+}
+
+$('startBtn').onclick = () => startGame(false);
+$('reportBtn').onclick = () => openReport();
+$('resetBtn').onclick = () => {
+  if(confirm('要重新开始整个闯关吗？当前进度会清空。')){
+    resetState(true);
+    course = buildCourse();
+    saveCourse();
+    restShownThisRun = false;
+    updateHomeStats();
+    startGame(false);
+  }
+};
+$('closeReportBtn').onclick = () => $('reportModal').classList.remove('show');
+$('backHomeBtn').onclick = () => { updateHomeStats(); show('home'); };
+$('muteBtn').onclick = () => { state.muted = !state.muted; saveState(); updateMuteBtn(); };
+$('continueAfterRest').onclick = () => { $('restModal').classList.remove('show'); renderQuestion(); };
+$('restartGameBtn').onclick = () => {
+  $('finishModal').classList.remove('show');
+  startGame(true);
+};
+$('finishReportBtn').onclick = () => {
+  $('finishModal').classList.remove('show');
+  openReport();
+};
+$('reportModal').addEventListener('click', e => { if(e.target === $('reportModal')) $('reportModal').classList.remove('show'); });
+$('restModal').addEventListener('click', e => { if(e.target === $('restModal')) $('restModal').classList.remove('show'); });
+$('finishModal').addEventListener('click', e => { if(e.target === $('finishModal')) $('finishModal').classList.remove('show'); });
+
+// 初始化
+ensureCourse();
+updateHomeStats();
+updateMuteBtn();
+</script>
+</body>
+</html>
